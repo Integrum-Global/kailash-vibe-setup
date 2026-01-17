@@ -1,13 +1,13 @@
 [build-system]
-requires = ["setuptools>=42", "wheel"]
+requires = ["setuptools>=65.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = ""
+name = "my-kailash-project"  # TODO: Replace with your project name
 version = "0.1.0"
-description = ""
+description = "A Kailash SDK project"  # TODO: Replace with your project description
 authors = [
-    {name = "", email = ""}
+    {name = "Your Name", email = "your.email@example.com"}  # TODO: Replace with your info
 ]
 readme = "README.md"
 requires-python = ">=3.11"
@@ -17,62 +17,79 @@ classifiers = [
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
 ]
 dependencies = [
-    # Kailash SDK
+    # Kailash SDK (includes: fastapi, uvicorn, pydantic, sqlalchemy, pandas, numpy, requests, pyyaml)
     "kailash>=0.10.15",
     "kailash-nexus>=1.1.3",
     "kailash-dataflow>=0.10.15",
     "kailash-kaizen>=0.9.4",
-    # Web Framework
-    "fastapi[all]>=0.115.0",
-    "uvicorn[standard]>=0.24.0",
     # CLI Framework
     "click>=8.0",
     "rich>=13.0.0",
-    # Data Handling
-    "pydantic>=2.0",
-    "pandas>=2.0.0",
-    "numpy>=1.24.0",
-    # Database
-    "sqlalchemy>=2.0",
+    # Database migrations
     "alembic>=1.12.0",
-    # Development Tools
-    "pytest>=7.0",
-    "pytest-cov>=4.0",
-    "pytest-asyncio>=0.21.0",
-    "black>=23.0",
-    "isort>=5.12.0",
-    "ruff>=0.1.0",
     # Utilities
-    "pyyaml>=6.0",
-    "requests>=2.31.0",
     "python-dotenv>=1.0.0",
     "structlog>=23.1.0",
-    "torch>=2.7.1",
 ]
 
 [project.optional-dependencies]
+ml = [
+    # PyTorch - On Windows, install separately: pip install torch --index-url https://download.pytorch.org/whl/cu118
+    "torch>=2.7.1",
+]
 dev = [
-    "pytest>=7.0",
-    "pytest-cov>=3.0",
-    "black>=22.0",
-    "isort>=5.10",
-    "mypy>=0.9",
+    # Testing (pytest>=7.2.0 removes vulnerable py dependency)
+    "pytest>=7.2.0",
+    "pytest-cov>=4.0",
+    "pytest-asyncio>=0.21.0",
+    # Linting & Formatting
+    "black>=23.0",
+    "isort>=5.12.0",
+    "ruff>=0.1.0",
+    "mypy>=1.0",
+    # Security & Pre-commit
+    "detect-secrets>=1.5.0",
+    "pre-commit>=4.2.0",
 ]
 
 [project.urls]
-"Homepage" = ""
-"Bug Tracker" = ""
+# TODO: Replace with your project URLs
+# "Homepage" = "https://github.com/your-org/your-project"
+# "Bug Tracker" = "https://github.com/your-org/your-project/issues"
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["apps*", "solutions*"]
 exclude = ["tests*", ".*", "__pycache__*"]
 
-[dependency-groups]
-dev = [
-    "detect-secrets>=1.5.0",
-    "doc8>=1.1.2",
-    "pre-commit>=4.2.0",
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+testpaths = ["tests"]
+filterwarnings = [
+    "ignore::DeprecationWarning",
 ]
+
+[tool.black]
+line-length = 100
+target-version = ["py311", "py312", "py313"]
+
+[tool.isort]
+profile = "black"
+line_length = 100
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_ignores = true
+ignore_missing_imports = true
