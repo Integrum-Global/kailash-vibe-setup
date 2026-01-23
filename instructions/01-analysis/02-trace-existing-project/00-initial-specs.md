@@ -4,10 +4,10 @@
 ### Creating a knowledge base that can be further distilled for use by agents and skills
 1. I want to create a set of agents and skills that can reference distilled knowledge of this repository.
    - for the purpose of:
-     - Resolve bugs
-     - create new features
-     - Repivot features
-     - and other development lifecycle activities...
+     - Resolving bugs
+     - creating new features
+     - Repivoting features
+     - and performing other development lifecycle activities...
        - I want you to check against our docs, tests, even git commits to see what activities are prone to repeat.
        - Then research widely and analyze what such activities are required in development lifecycles for a project of this nature.
 2. This is a solution for ... and we envision it to be a product with the following soft rule:
