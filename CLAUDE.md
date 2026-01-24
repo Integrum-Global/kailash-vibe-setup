@@ -56,7 +56,7 @@
 ## 🎯 Specialized Subagents
 
 ### Analysis & Planning
-- **ultrathink-analyst** → Deep failure analysis, complexity assessment
+- **deep-analyst** → Deep failure analysis, complexity assessment
 - **requirements-analyst** → Requirements breakdown, ADR creation
 - **sdk-navigator** → Find patterns before coding, resolve errors during development
 - **framework-advisor** → Choose Core SDK, DataFlow, or Nexus; coordinates with specialists
